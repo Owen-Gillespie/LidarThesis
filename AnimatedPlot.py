@@ -12,7 +12,8 @@ import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib import animation
 import datetime, thread, time, serial, sys, traceback, math, timeit
-import NewParser as parser 
+import NewParser as parser
+import cv2 
 
 
 #Serial Set up
@@ -23,7 +24,12 @@ index = 0
 FullData = [ [0] for i in range(360)]
 RPMData=[0 for i in range(50)]
 RPMCounter = 0
+img = np.zeros((10000,10000), np.uint8)
 
+def pol2cart(rho, phi):
+    x = rho * np.cos(phi)
+    y = rho * np.sin(phi)
+    return(x, y)
 
 # First set up the figure, the axis, and the plot element we want to animate
 plt.close('all')
@@ -64,7 +70,10 @@ def animate(i):
     analog_data[0]=parser.readLidar()
     analog_data[1].extend(np.add(np.multiply(np.abs(np.sin(2 * np.pi * x * -1.0)), .3), 1.3))
     lines[0].set_data(x_data, analog_data[0])
+    print max(analog_data[0])
     return tuple(lines)
+
+
 
 # call the animator.  blit=True means only re-draw the parts that have changed.
 anim = animation.FuncAnimation(fig, animate, init_func=init,
