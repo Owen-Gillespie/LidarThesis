@@ -29,11 +29,6 @@ RPMCounter = 0
 readOn=True
 
 
-ptArray=np.zeros((10000,10000,3), np.uint8)
-
-#plt.show()
-
-
 def readPacket():
     data=[ord(b) for b in ser.read(19)]
     #print data
@@ -82,12 +77,9 @@ def storeData(data):
     FullData[tempIndex+3]=data[5]
     return 0
 
-def updateDisplay():
+'''def updateDisplay():
     polarDistances=[i[0] for i in FullData]
-    polarAngles=[math.pi*2.0/360.0*i for i in range(360)]
-    #print "update!"
-    plt.draw()
-
+    polarAngles=[math.pi*2.0/360.0*i for i in range(360)]'''
 
 def readLidar():
     init_level=0
@@ -101,38 +93,10 @@ def readLidar():
             if result!=0:
                 parsedData=parse(result)
                 storeData(parsedData)
-                print max([i[0] for i in FullData])
                 return [i[0] for i in FullData]
             else:
-                return 0
-            
-def storeNumpyData(data):
-    tempIndex=data[0]*4
-    print data[2][0]
-    ptArray[(int)(data[2][0]*math.sin(math.radians(tempIndex)))+5000][(int)(data[2][0]*math.sin(math.radians(tempIndex)))+5000]=[100,100,100]
-    ptArray[(int)(data[3][0]*math.sin(math.radians(tempIndex+1)))+5000][(int)(data[3][0]*math.sin(math.radians(tempIndex+1)))+5000]=[100,0,100]
-    ptArray[(int)(data[4][0]*math.sin(math.radians(tempIndex+2)))+5000][(int)(data[4][0]*math.sin(math.radians(tempIndex+2)))+5000]=[100,100,0]
-    ptArray[(int)(data[5][0]*math.sin(math.radians(tempIndex+3)))+5000][(int)(data[5][0]*math.sin(math.radians(tempIndex+3)))+5000]=[0,100,100]
+                return [0]
 
-
-def readLidarNumpy():
-    init_level=0
-    while True:
-        if init_level==0:
-            byte=ser.read(1)
-            if ord(byte)==250:
-                init_level=1
-        if init_level==1:
-            result=readPacket()
-            if result!=0:
-                parsedData=parse(result)
-                storeNumpyData(parsedData)
-                plt.draw()
-
-plt.imshow(ptArray)
-plt.ion()
-plt.show()
-readLidarNumpy()
 ser.write("MotorOff\n")
 ser.close
 
