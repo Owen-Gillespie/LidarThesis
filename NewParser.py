@@ -15,9 +15,10 @@ baudrate = 115200
 
 ser = serial.Serial(com_port, baudrate)
 ser.write("MotorOn\n")
+print 'test'
 ser.write("HideRPM\n")
-ser.write("Set RPM 280")
-time.sleep(5)
+ser.write("Set RPM 300")
+time.sleep(7)
 ser.flushOutput()
 index = 0
 read=True
@@ -96,6 +97,8 @@ def readLidar():
                 return [i[0] for i in FullData]
             else:
                 return [0]
+def lidarOff():
+    ser.write("MotorOff\n")
 
 ser.write("MotorOff\n")
 ser.close

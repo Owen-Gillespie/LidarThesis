@@ -24,7 +24,7 @@ index = 0
 FullData = [ [0] for i in range(360)]
 RPMData=[0 for i in range(50)]
 RPMCounter = 0
-ptArray=np.zeros((1000,1000), np.uint8)
+ptArray=np.zeros((4000,4000), np.uint8)
 
 def pol2cart(rho, phi):
     x = rho * math.cos(phi)
@@ -53,7 +53,11 @@ def animate(i):
     analog_data=parser.readLidar()
     for index, item in enumerate(analog_data):
     	x,y = pol2cart(item,x_data[index])
-    	ptArray[max(min(999,(int)(x+500)),0)][max(min(999,(int)(y+500)),0)]=200
+    	if abs(x) > 2000:
+    		x=0
+    	if abs(y) > 2000:
+    		y=0
+    	ptArray[x+2000][y+2000]=200
     lines[0].set_data(x_data, analog_data)
     '''print np.sum(ptArray)'''
     return tuple(lines)
@@ -67,10 +71,11 @@ plt.xlabel('Time (s)')
 plt.ylabel('Voltage (v)')
 plt.ion()
 plt.show()
-for i in range(300):
+for i in range(90):
 	print i
 	animate(i)
 	plt.draw()
+parser.lidarOff()
 
 # save the animation as an mp4.  This requires ffmpeg or mencoder to be
 # installed.  The extra_args ensure that the x264 codec is used, so that
@@ -97,7 +102,7 @@ for i in Houghlines:
 	x2 = int(x0 - 1000*(-b))
 	y2 = int(y0 - 1000*(a))
 
-	cv2.line(ptArray,(x1,y1),(x2,y2),(0,0,255),2)
+	'''cv2.line(ptArray,(x1,y1),(x2,y2),(0,0,255),2)'''
 
 cv2.imshow('lines', ptArray)
 cv2.waitKey(0)
