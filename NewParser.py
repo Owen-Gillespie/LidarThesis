@@ -3,32 +3,18 @@
 #requires vpython and pyserial
 
 
-import thread, time, serial, sys, traceback, math, matplotlib.pyplot as plt
+
+import thread, bisect, time, serial, sys, config, traceback, math, matplotlib.pyplot as plt
 import numpy as np
 
-com_port = "COM3" # example: 5 == "COM6" == "/dev/tty5" # Windows
-# com_port = "/dev/cu.usbmodem12341" # Mac OS X
-# com_port = "/dev/ttyACM0" # Beaglebone Black Ubuntu
-baudrate = 115200
-
-# On Mac OS X, to see which port, run $ python -m serial.tools.list_ports
-
-ser = serial.Serial(com_port, baudrate)
-ser.write("MotorOn\n")
-print 'test'
-ser.write("HideRPM\n")
-ser.write("Set RPM 300")
-time.sleep(7)
-ser.flushOutput()
 index = 0
-read=True
 FullData = [ [0] for i in range(360)]
-polarDistances=[i[0] for i in FullData]
-polarAngles=[math.pi*2.0/360.0*i for i in range(360)]
-RPMData=[0 for i in range(50)]
-RPMCounter = 0
+AdjustedData = [[0] for i in range(720)]
+ser = config.ser
 readOn=True
 
+pointArray=[[0,0] for i in range(config.maxPoints)]
+lastAngle = 0
 
 def readPacket():
     data=[ord(b) for b in ser.read(19)]
@@ -55,14 +41,11 @@ def checksum(data):
     checksum= (chk32 & 0x7FFF) + (chk32 >> 15)
     checksum=checksum & 0x7FFF
     binaryChecksum=[ord(b) for b in ser.read(2)]
-    #print binaryChecksum
-    #print checksum
     return checksum==binaryChecksum[0] + (binaryChecksum[1] << 8)
 
 def parse(data):
     index=data[0]-160  #adjust index
     RPM=(data[1]+(data[2]<<8))/64.0
-    #print RPM 
     reading0=[data[3]+((data[4]&0x3F)<<8),data[4]&0x80>>7,data[4]&0x40>>6,data[5]+(data[6]<<8)]
     reading1=[data[7]+((data[8]&0x3F)<<8),data[8]&0x80>>7,data[8]&0x40>>6,data[9]+(data[10]<<8)]
     reading2=[data[11]+((data[12]&0x3F)<<8),data[12]&0x80>>7,data[12]&0x40>>6,data[13]+(data[14]<<8)]
@@ -70,17 +53,14 @@ def parse(data):
     return [index,RPM,reading0,reading1,reading2,reading3]
 
 
-def storeData(data):
-    tempIndex=data[0]*4
-    FullData[tempIndex]=data[2]
-    FullData[tempIndex+1]=data[3]
-    FullData[tempIndex+2]=data[4]
-    FullData[tempIndex+3]=data[5]
-    return 0
-
-'''def updateDisplay():
-    polarDistances=[i[0] for i in FullData]
-    polarAngles=[math.pi*2.0/360.0*i for i in range(360)]'''
+def adjustData(data):
+    adjustedData=[[0] for x in range(6)]
+    adjustedData[0]=data[0]*4
+    adjustedData[1]=data[1]
+    for x in range(2,6):
+        adjustedDataPoint=inverseKinematics(data[x][0], adjustedData[0]+x-1)
+        adjustedData[x] = adjustedDataPoint
+    return adjustedData
 
 def readLidar():
     init_level=0
@@ -93,14 +73,71 @@ def readLidar():
             result=readPacket()
             if result!=0:
                 parsedData=parse(result)
-                storeData(parsedData)
-                return [i[0] for i in FullData]
+                adjustedData = adjustData(parsedData)
+                print "RPM:", adjustedData[1]
+                return adjustedData
             else:
                 return [0]
 def lidarOff():
+
     ser.write("MotorOff\n")
+    ser.close
 
-ser.write("MotorOff\n")
-ser.close
+def lidarOn():
+    print "Motor on!"
+    ser.write("MotorOn\n")
+    ser.write("HideRPM\n")
+    ser.write("Set RPM 300")
 
+def inverseKinematics(rho, theta):
+    
+    theta_offset = config.poseX
+    x_offset = config.poseY
+    y_offset = config.poseAngle
+    
+    x_total= x_offset + rho * math.cos(math.radians(theta + theta_offset))
+    y_total= y_offset + rho * math.sin(math.radians(theta + theta_offset))
+    
+    new_rho = int(round(math.sqrt(x_total**2 + y_total**2)))
+    if (x_total==0):
+        if (y_total==0):
+            new_theta=0
+        elif (y_total>0):
+            new_theta=90
+        else:
+            new_theta=270
+    else:
+        new_theta = math.degrees(math.atan(y_total/x_total))
+    return [(int(round(new_theta))+360)%360, new_rho]
 
+def storeData(data):
+    if data[2][0] < lastAngle:
+        lastAngle = 0
+    startIndex = find_ge(pointArray, data[2][0])
+    endIndex = find_le(pointArray, data[5][0])
+    del pointArray[startIndex:endIndex+1]
+    pointArray.insert(startIndex,data[2])
+    pointArray.insert(startIndex+1,data[3])
+    pointArray.insert(startIndex+2,data[4])
+    pointArray.insert(startIndex+3,data[5])
+
+def find_ge(a, x):
+    'Find leftmost item greater than or equal to x'
+    i = bisect_left(a, x)
+    if i != len(a):
+        return a[i]
+    raise ValueError
+
+def find_le(a, x):
+    'Find rightmost value less than or equal to x'
+    i = bisect_right(a, x)
+    if i:
+        return a[i-1]
+    raise ValueError
+
+def runLidar():
+    lidarOn()
+    while readOn:
+        storeData(readLidar())
+    lidarOff()
+    lidarOff()
