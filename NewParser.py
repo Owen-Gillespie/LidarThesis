@@ -4,8 +4,11 @@
 
 
 
-import thread, bisect, time, serial, sys, config, traceback, math, matplotlib.pyplot as plt
+import thread, bisect, time, serial, sys, config, traceback, math,cv2, matplotlib.pyplot as plt
 import numpy as np
+import bottleneck as bn
+
+
 
 index = 0
 FullData = [ [0] for i in range(360)]
@@ -13,7 +16,8 @@ AdjustedData = [[0] for i in range(720)]
 ser = config.ser
 readOn=True
 
-pointArray=[[0,0] for i in range(config.maxPoints)]
+pointAngleArray=[0]
+pointDistanceArray=[0]
 lastAngle = 0
 
 def readPacket():
@@ -74,12 +78,13 @@ def readLidar():
             if result!=0:
                 parsedData=parse(result)
                 adjustedData = adjustData(parsedData)
-                print "RPM:", adjustedData[1]
+                if config.debug:
+                    print "RPM:", adjustedData[1]
                 return adjustedData
             else:
                 return [0]
 def lidarOff():
-
+    print "Off"
     ser.write("MotorOff\n")
     ser.close
 
@@ -108,36 +113,134 @@ def inverseKinematics(rho, theta):
             new_theta=270
     else:
         new_theta = math.degrees(math.atan(y_total/x_total))
-    return [(int(round(new_theta))+360)%360, new_rho]
+    if new_rho == 53:
+        print "Dumb sensor"
+        new_rho=4000
+    return [(int(round(theta))+719)%360, new_rho]  #Fix it so new_theta is correct
 
 def storeData(data):
-    if data[2][0] < lastAngle:
+    if len(data)!=6:
+        return
+    if config.debug:
+        print data
+    global lastAngle
+    currentAngle = data[2][0]
+    if currentAngle < lastAngle:
         lastAngle = 0
-    startIndex = find_ge(pointArray, data[2][0])
-    endIndex = find_le(pointArray, data[5][0])
-    del pointArray[startIndex:endIndex+1]
-    pointArray.insert(startIndex,data[2])
-    pointArray.insert(startIndex+1,data[3])
-    pointArray.insert(startIndex+2,data[4])
-    pointArray.insert(startIndex+3,data[5])
+    startIndex = find_le(pointAngleArray, currentAngle)#Wrong!
+    endIndex = find_ge(pointAngleArray, data[5][0])#Wrong!
+    if config.debug:
+        print "Start Index:", startIndex, currentAngle
+        print "End Index:", endIndex, data[5][0]
+    if endIndex==0:
+        del pointAngleArray[startIndex:]
+        del pointDistanceArray[startIndex:]
+    else:
+        del pointAngleArray[startIndex:endIndex]
+        del pointDistanceArray[startIndex:endIndex]
+    pointAngleArray.insert(startIndex,data[2][0])
+    pointAngleArray.insert(startIndex+1,data[3][0])
+    pointAngleArray.insert(startIndex+2,data[4][0])
+    pointAngleArray.insert(startIndex+3,data[5][0])
+    pointDistanceArray.insert(startIndex,data[2][1])
+    pointDistanceArray.insert(startIndex+1,data[3][1])
+    pointDistanceArray.insert(startIndex+2,data[4][1])
+    pointDistanceArray.insert(startIndex+3,data[5][1])
+    if config.debug:
+        print pointAngleArray
 
 def find_ge(a, x):
     'Find leftmost item greater than or equal to x'
-    i = bisect_left(a, x)
+    i = bisect.bisect_right(a, x)
     if i != len(a):
-        return a[i]
-    raise ValueError
+        return i
+    return 0
 
 def find_le(a, x):
     'Find rightmost value less than or equal to x'
-    i = bisect_right(a, x)
+    i = bisect.bisect_left(a, x)
     if i:
-        return a[i-1]
-    raise ValueError
+        return i
+    return 0
 
 def runLidar():
     lidarOn()
     while readOn:
-        storeData(readLidar())
+        for x in range(45):
+            storeData(readLidar())
+        frameAnalysis()
     lidarOff()
     lidarOff()
+
+def frameAnalysis():
+    image=np.zeros((4000,4000), np.uint8)
+    for index in range(len(pointAngleArray)):
+        theta=pointAngleArray[index]
+        rho=pointDistanceArray[index]
+        x,y=pol2cart(rho, math.radians(theta))
+        if config.debug:
+            print x,y
+        if -2000<x<2000 and -2000<y<2000:
+            image[2000+x][2000+y]= 200
+    accumulator, thetas, rhos = hough_line(image)
+    arr = np.ravel(accumulator)
+    sortedArr=bn.argpartsort(arr, n=arr.shape[0]-config.maxLines)
+    possibleLines=sortedArr[-config.maxLines:]
+    lines=[]
+    for x in range(len(possibleLines)):
+        index=possibleLines[x]
+        rho = rhos[index / accumulator.shape[1]]
+        theta = thetas[index % accumulator.shape[1]]
+        for i in range(x+1,len(possibleLines)):
+            index2 = possibleLines[i]
+            rho2 = rhos[index2 / accumulator.shape[1]]
+            theta2 = thetas[index2 % accumulator.shape[1]]
+            #print "Theta1: " + repr(theta) + " Theta2: " + repr(theta2) + " Rho1: " + repr(rho) + " Rho2: " + repr(rho2)
+            if abs(theta-theta2) < .04 and ((rho > 0) == (rho2>0)):
+                #print "Merge suceeded"
+                arr[index]+= arr[index2]
+                arr[index2]=0
+                theta = (theta + theta2)/2.
+                rho = (rho + rho2)/2
+            #else:
+            #    print "Merge failed"
+        if arr[index] >= config.minLength:
+            print "index:"
+            print arr[index]
+            lines.append([arr[index],theta,rho])
+            print "rho={0:.2f}, theta={1:.0f}".format(rho, np.rad2deg(theta))
+    cv2.imwrite('houghlines3.jpg',image)
+
+def hough_line(img):
+  # Rho and Theta ranges
+  thetas = np.deg2rad(np.arange(-90.0, 90.0))
+  width, height = img.shape
+  diag_len = np.ceil(np.sqrt(width * width + height * height))   # max_dist
+  print "Diag len: " + repr(diag_len)
+  rhos = np.linspace(-diag_len, diag_len, diag_len * 2.0)
+
+  # Cache some resuable values
+  cos_t = np.cos(thetas)
+  sin_t = np.sin(thetas)
+  num_thetas = len(thetas)
+
+  # Hough accumulator array of theta vs rho
+  accumulator = np.zeros((2 * diag_len, num_thetas), dtype=np.uint64)
+  y_idxs, x_idxs = np.nonzero(img)  # (row, col) indexes to edges
+
+  # Vote in the hough accumulator
+  for i in range(len(x_idxs)):
+    x = x_idxs[i]
+    y = y_idxs[i]
+
+    for t_idx in range(num_thetas):
+      # Calculate rho. diag_len is added for a positive index
+      rho = round((x-2000) * cos_t[t_idx] + (y-2000) * sin_t[t_idx]) + diag_len
+      accumulator[rho, t_idx] += 1
+
+  return accumulator, thetas, rhos
+
+def pol2cart(rho, theta):
+    x = rho * math.cos(theta)
+    y = rho * math.sin(theta)
+    return(x, y)

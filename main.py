@@ -9,11 +9,14 @@ udpReciever.daemon = True
 parser = threading.Thread(target=NewParser.runLidar, args = ())
 parser.daemon = True
 
+analysis = threading.Thread(target=NewParser.frameAnalysis, args = ())
+
 
 udpReciever.start()
 sensorReciever.start()
 parser.start()
-time.sleep(5)
+analysis.start()
+time.sleep(15)
 NewParser.readOn = False
 print NewParser.readOn
 time.sleep(1)
