@@ -15,7 +15,7 @@ analysis = threading.Thread(target=NewParser.frameAnalysis, args = ())
 udpReciever.start()
 sensorReciever.start()
 parser.start()
-analysis.start()
+#analysis.start()
 time.sleep(15)
 NewParser.readOn = False
 print NewParser.readOn

@@ -1,0 +1,804 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"fra",
+				"frame_start_time"
+			],
+			[
+				"frame",
+				"frame_start_time"
+			],
+			[
+				"all_",
+				"all_parse_start_time"
+			],
+			[
+				"new",
+				"new_rho"
+			],
+			[
+				"thet",
+				"theta2"
+			],
+			[
+				"index",
+				"index2"
+			],
+			[
+				"rho",
+				"rho2"
+			],
+			[
+				"pos",
+				"possibleLines"
+			],
+			[
+				"y",
+				"y"
+			],
+			[
+				"hough",
+				"houghlines3"
+			],
+			[
+				"po",
+				"pointDistanceArray"
+			],
+			[
+				"poi",
+				"pointAngleArray"
+			],
+			[
+				"point",
+				"pointDistanceArray"
+			],
+			[
+				"find",
+				"find_le"
+			],
+			[
+				"ad",
+				"adjustedData"
+			],
+			[
+				"adjus",
+				"adjustedData"
+			],
+			[
+				"UDPR",
+				"UDPReciever"
+			],
+			[
+				"T",
+				"Thread"
+			],
+			[
+				"se",
+				"sensorData"
+			],
+			[
+				"pose",
+				"poseXName"
+			],
+			[
+				"sens",
+				"sensorReciever"
+			],
+			[
+				"ca",
+				"calculatePose"
+			],
+			[
+				"lat",
+				"latestAdjustedIndex"
+			],
+			[
+				"new_",
+				"new_rho"
+			],
+			[
+				"x",
+				"x_total"
+			],
+			[
+				"y_",
+				"y_total"
+			],
+			[
+				"the",
+				"theta_offset"
+			],
+			[
+				"lowes",
+				"lowestPriceUsed"
+			],
+			[
+				"lo",
+				"lowestPriceUsed"
+			],
+			[
+				"low",
+				"lowestNewPrice"
+			],
+			[
+				"shipping",
+				"shippingTime"
+			],
+			[
+				"co",
+				"comment"
+			],
+			[
+				"commen",
+				"comments"
+			],
+			[
+				"for",
+				"ForeignKey"
+			],
+			[
+				"user",
+				"username"
+			],
+			[
+				"de",
+				"default_timer"
+			],
+			[
+				"st",
+				"start_time"
+			],
+			[
+				"site",
+				"site_id"
+			],
+			[
+				"c",
+				"Column"
+			],
+			[
+				"Co",
+				"Column"
+			],
+			[
+				"C",
+				"Column"
+			],
+			[
+				"__",
+				"__tablename__"
+			],
+			[
+				"F",
+				"False"
+			],
+			[
+				"to",
+				"toDelete"
+			],
+			[
+				"re",
+				"repr"
+			],
+			[
+				"app",
+				"append"
+			],
+			[
+				"get",
+				"get"
+			],
+			[
+				"comm",
+				"commentID"
+			],
+			[
+				"com",
+				"commentWords"
+			],
+			[
+				"newW",
+				"newWords"
+			],
+			[
+				"wo",
+				"word"
+			],
+			[
+				"id",
+				"commentID"
+			],
+			[
+				"word",
+				"word"
+			],
+			[
+				"old",
+				"oldWord"
+			],
+			[
+				"tot",
+				"totalUse"
+			],
+			[
+				"wor",
+				"wordWeight"
+			],
+			[
+				"w",
+				"word"
+			],
+			[
+				"tota",
+				"totalWords"
+			],
+			[
+				"total",
+				"totalUse"
+			],
+			[
+				"all",
+				"allWords"
+			],
+			[
+				"U",
+				"Username"
+			],
+			[
+				"User",
+				"username"
+			],
+			[
+				"tra",
+				"translate_non_alphanumerics"
+			],
+			[
+				"l",
+				"lines"
+			],
+			[
+				"fig",
+				"figure"
+			],
+			[
+				"data",
+				"analog_data"
+			],
+			[
+				"pol",
+				"pol2cart"
+			],
+			[
+				"py",
+				"ptArray"
+			],
+			[
+				"readL",
+				"readLidarNumpy"
+			],
+			[
+				"car",
+				"cart_y"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "NewParser.py",
+			"settings":
+			{
+				"buffer_size": 8331,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "config.py",
+			"settings":
+			{
+				"buffer_size": 587,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "main.py",
+			"settings":
+			{
+				"buffer_size": 583,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Owen Gillespie/Documents/Surrogate Desktop/parseTest.py",
+			"settings":
+			{
+				"buffer_size": 2601,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/Java/Ant.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Java/Ant.sublime-build",
+					""
+				],
+				[
+					"Packages/Java/JavaC.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Java/Ant.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 500.0,
+		"last_filter": "package control",
+		"selected_items":
+		[
+			[
+				"package control",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 559.0
+	},
+	"console":
+	{
+		"height": 176.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Owen Gillespie/Documents/GitHub/LidarThesis/test2.txt",
+		"/C/Users/Owen Gillespie/test.txt",
+		"/C/Users/Owen Gillespie/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Owen Gillespie/Documents/GitHub/Discord-Chatbot/data.json",
+		"/C/Users/Owen Gillespie/Documents/GitHub/Discord-Chatbot/bot.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/LidarThesis/SensorFusion.py",
+		"/C/Users/Owen Gillespie/Documents/Surrogate Desktop/parseTest.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/LidarThesis/main.py",
+		"/C/Users/Owen Gillespie/Documents/Surrogate Desktop/NewParser.py",
+		"/C/Users/Owen Gillespie/Documents/Surrogate Desktop/newParser.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/LidarThesis/test.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/LidarThesis/config.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/LidarThesis/UDPReciever.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/LidarThesis/UDPSender.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/LidarThesis/NewParser.py",
+		"/C/Users/Owen Gillespie/Documents/evaluteBookPrice.py",
+		"/C/Users/Owen Gillespie/AppData/Local/Temp/Temp1_ZBarAndroidSDK-0.1.zip/ZBarAndroidSDK-0.1/examples/CameraTest/src/net/sourceforge/zbar/android/CameraTest/CameraTestActivity.java",
+		"/C/Users/Owen Gillespie/Documents/BluePrint/PullAmazonPricing/PullAmazonPricing2/index.js",
+		"/C/Users/Owen Gillespie/Documents/from amazonproduct import API.py",
+		"/C/Users/Owen Gillespie/AppData/Local/Temp/Temp1_PullAmazonPricing.zip/PullAmazonPricing/index.js",
+		"/C/Users/Owen Gillespie/AppData/Local/Temp/Temp1_PullAmazonPricing.zip/PullAmazonPricing/PullAmazonPricing.iml",
+		"/C/Users/Owen Gillespie/AppData/Local/Temp/Temp1_PullAmazonPricing.zip/PullAmazonPricing/package.json",
+		"/C/Users/Owen Gillespie/Downloads/interpolation_hermite_spline.rtf",
+		"/C/Users/Owen Gillespie/Downloads/distance_array.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/comment_scraper2.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/comment_scraper.py",
+		"/C/Users/Owen Gillespie/Documents/ultimate-flask-front-end-1/project/static/scripts/jsx/main.js",
+		"/C/Users/Owen Gillespie/Documents/ultimate-flask-front-end-1/project/app.py",
+		"/C/Users/Owen Gillespie/Documents/ultimate-flask-front-end-1/project/templates/hello.html",
+		"/C/Users/Owen Gillespie/Documents/ultimate-flask-front-end-1/project/templates/index.html",
+		"/C/Users/Owen Gillespie/AppData/Local/Temp/Temp1_DaisyCV.zip/DaisyCV/src/edu/missdaisy/smartdashboard/daisycv/DaisyCVWidget.java",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/app/models.py",
+		"/C/Users/Owen Gillespie/Documents/ultimate-flask-front-end-1/bower.json",
+		"/C/Users/Owen Gillespie/Documents/ultimate-flask-front-end-1/package.json",
+		"/C/Users/Owen Gillespie/Documents/ultimate-flask-front-end-1/gulpfile.js",
+		"/C/Users/Owen Gillespie/Documents/ultimate-flask-front-end-1/gulp.js",
+		"/C/Users/Owen Gillespie/Documents/ultimate-flask-front-end-1/.bowerrc",
+		"/C/Users/Owen Gillespie/.gitignore_global.txt",
+		"/C/Users/Owen Gillespie/Documents/GitHub/hungryhippo/.gitignore",
+		"/C/Users/Owen Gillespie/Downloads/Nutrons_125-2011_Robot_Code/src/edu/neu/nutrons/bots/logomotion/drivetrain/DriveTrain.java",
+		"/C/Users/Owen Gillespie/Documents/GitHub/rollthedice/rollthedice/models.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/rollthedice/rollthedice/forms.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/rollthedice/rollthedice/__init__.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/rollthedice/rollthedice/views.py",
+		"/C/Users/Owen Gillespie/navx-mxp/java/examples/AutoBalance/src/org/usfirst/frc/team2465/robot/Robot.java",
+		"/C/Users/Owen Gillespie/Documents/GitHub/rollthedice/app/views.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/rollthedice/app/__init__.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/rollthedice/main.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/rollthedice/app/models.py",
+		"/C/Program Files/apache-ant-1.9.6-bin/apache-ant-1.9.6/INSTALL",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/app/views.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/rollthedice/run.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/rollthedice/app/templates/index.html",
+		"/C/Users/Owen Gillespie/Documents/GitHub/rollthedice/config.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/templates/index.html",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/config.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/db_clear.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/run.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/app/__init__.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/hungryhippo/README.md",
+		"/C/Users/Owen Gillespie/Documents/GitHub/Notifications/README.md",
+		"/C/Users/Owen Gillespie/Documents/GitHub/c_sharp/Java/UdpAlertService/src/roborio/UdpService.java",
+		"/C/Users/Owen Gillespie/Documents/GitHub/c_sharp/Java/UdpAlertService/src/roborio/AlertMessage.java",
+		"/C/Users/Owen Gillespie/Downloads/Driver Station Alert System/Driver Station Alert System/Java code/AlertMessage.java",
+		"/C/Users/Owen Gillespie/Downloads/Driver Station Alert System/Driver Station Alert System/Java code/UdpAlertService.java",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/db_downgrade.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/db_upgrade.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/db_migrate.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/db_create.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/commentsTest.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/praw_test.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/app/templates/index.html",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/app/templates/base.html",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/app/templates/login.html",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/app/forms.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/FeatureLabsFlaskDemo/app/templates/config.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/LidarThesis/AnimatedNumpyPlot.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/LidarThesis/AnimatedPlot.py",
+		"/C/Users/Owen Gillespie/Desktop/MotorOn.py",
+		"/C/Users/Owen Gillespie/Documents/GitHub/LidarThesis/HoughDemo.py"
+	],
+	"find":
+	{
+		"height": 47.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"[0-9]",
+			"last_x",
+			")\n",
+			"))\n",
+			"last_x",
+			"analog_data",
+			")\n",
+			"))\n",
+			"storeData",
+			"adjustData",
+			"pol2cart",
+			"config",
+			"53",
+			"pointArra",
+			"config",
+			"readOn",
+			"RPMData",
+			"on",
+			"cos",
+			"polar",
+			"read",
+			"javac",
+			"shifter",
+			"setLowGear",
+			"dodgeball",
+			"print",
+			"ser",
+			"for",
+			"draw",
+			"print",
+			"lobj1",
+			"max(100",
+			"+50]",
+			"[(int)((da",
+			")/100",
+			"/100",
+			"+50",
+			"(int)(d",
+			"5000",
+			"3000",
+			"2048",
+			"1024",
+			"readLidar",
+			"Parser",
+			"animate",
+			"parser"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "NewParser.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8331,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3485,
+								3485
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2197.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "config.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 587,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								587,
+								587
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "main.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 583,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								569,
+								569
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Users/Owen Gillespie/Documents/Surrogate Desktop/parseTest.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2601,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1324,
+								1324
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 635.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 46.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 520.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Python/Python.sublime-build",
+	"project": "LidarProject.sublime-project",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\Owen Gillespie\\Documents\\GitHub\\LidarThesis\\NewParser.py"
+			],
+			[
+				"test",
+				"C:\\Users\\Owen Gillespie\\Documents\\Surrogate Desktop\\parseTest.py"
+			],
+			[
+				"new",
+				"C:\\Users\\Owen Gillespie\\Documents\\GitHub\\LidarThesis\\NewParser.py"
+			],
+			[
+				"cionfi",
+				"C:\\Users\\Owen Gillespie\\Documents\\GitHub\\LidarThesis\\config.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 625.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\Owen Gillespie\\Documents\\GitHub\\Flask Practice\\config.sublime-workspace"
+			]
+		],
+		"width": 475.0
+	},
+	"select_symbol":
+	{
+		"height": 101.0,
+		"last_filter": "init",
+		"selected_items":
+		[
+			[
+				"init",
+				"init"
+			],
+			[
+				"ini",
+				"init"
+			],
+			[
+				"ani",
+				"animate"
+			],
+			[
+				"te",
+				"storeData"
+			],
+			[
+				"",
+				"readPacket"
+			],
+			[
+				"parse",
+				"parse"
+			]
+		],
+		"width": 490.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 188.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
