@@ -33,6 +33,7 @@ def readPacket():
         return 0
 
 def checksum(data):
+    '''Confirms that the packet matches its checksum'''
     dataList=[]
     chk32=0
     dataList.append(0xFA + (data[0] << 8))
@@ -120,6 +121,7 @@ def inverseKinematics(rho, theta):
 
 def storeData(data):
     if len(data)!=6:
+        print "Not 6"
         return
     if config.debug:
         print data
@@ -164,11 +166,22 @@ def find_le(a, x):
     return 0
 
 def runLidar():
+    n = 0
     lidarOn()
     while readOn:
+        all_parse_start_time= time.time()
         for x in range(45):
+            #start_time = time.time()
             storeData(readLidar())
+            #end_time = time.time()
+            #print("Elapsed time was %f seconds" % (end_time - start_time))
+        all_parse_end_time = time.time()
+        print("Elapsed time for all reads was %f seconds" % (all_parse_end_time - all_parse_start_time))
+        frame_start_time = time.time()
         frameAnalysis()
+        frame_end_time = time.time()
+        print("Elapsed time for Hough Transform %(num)d was %(time)f seconds" % {'num': n, 'time':(frame_end_time - frame_start_time)})
+        n+=1
     lidarOff()
     lidarOff()
 
